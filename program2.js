@@ -90,6 +90,18 @@ Engine.run(engine);
 // run the renderer
 Render.run(render);
 
-window.addEventListener('deviceorientation', function(event) {
-    console.log(event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
-  });
+  function onClick() {
+    // feature detect
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+      DeviceOrientationEvent.requestPermission()
+        .then(permissionState => {
+          if (permissionState === 'granted') {
+            window.addEventListener('deviceorientation', function(event) {
+                console.log(event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
+              });          
+            }
+        })
+        .catch(console.error);
+    } else {
+      // handle regular non iOS 13+ devices
+    }
