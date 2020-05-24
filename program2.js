@@ -105,3 +105,4 @@ Render.run(render);
     } else {
       // handle regular non iOS 13+ devices
     }
+}
