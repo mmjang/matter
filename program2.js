@@ -98,6 +98,8 @@ Render.run(render);
           if (permissionState === 'granted') {
             window.addEventListener('deviceorientation', function(event) {
                 console.log(event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
+                engine.world.gravity.y = Math.sin(event.beta * 2 * Math.PI / 360);
+                engine.world.gravity.x = Math.sin(event.gamma * 2 * Math.PI / 360);
               });          
             }
         })
